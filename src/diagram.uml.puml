@@ -1,0 +1,44 @@
+@startuml
+
+' Interfaces
+interface Filter {
+    +accept(x: Object): boolean
+}
+
+' ShortWordFilter implements Filter
+class ShortWordFilter {
+    +accept(x: Object): boolean
+}
+
+' BigRectangleFilter implements Filter
+class BigRectangleFilter {
+    +accept(x: Object): boolean
+}
+
+' ShortLister uses ShortWordFilter
+class ShortLister {
+    +main(args: String[]): void
+}
+
+' BigRectLister uses BigRectangleFilter and Rectangle
+class BigRectLister {
+    +main(args: String[]): void
+}
+
+' From java.awt
+class Rectangle {
+    -x: int
+    -y: int
+    -width: int
+    -height: int
+}
+
+' Relationships
+Filter <|-- ShortWordFilter
+Filter <|-- BigRectangleFilter
+
+ShortLister --> ShortWordFilter
+BigRectLister --> BigRectangleFilter
+BigRectLister --> Rectangle
+
+@enduml
